@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>University of Jordan | Registration</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href=" ./plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href=" ./plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href=" ./dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition register-page">
+
+  <div class="register-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href=" ./index2.html" class="h3">University of Jordan</a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Update Admin Information</p>
+        <form method="POST" class="rtl">
+          <div class="input-group mb-3">
+            <input type="text" dir="rtl" class="form-control" name="name_of_employee"  placeholder="اسم الموظف">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="number" dir="rtl" class="form-control" name="employee_id" placeholder="الرقم الوظيفي">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="password" dir="rtl" class="form-control" name="password" placeholder="رقم المرور">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="password" dir="rtl" class="form-control" name="confirm_password" placeholder="تأكيد رقم المرور">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+              <button type="submit" name="add-new-admin" class="btn btn-primary btn-block">Add New Admin</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src=" ./plugins/jquery/jquery.min.js"></script>
+  <script src=" ./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src=" ./dist/js/adminlte.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const successMessage = document.getElementById('success-message');
+      setTimeout(function() {
+        if (successMessage) {
+          successMessage.style.display = 'none';
+        }
+      }, 2000);
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      const errorMessage = document.getElementById('error-message');
+      setTimeout(function() {
+        if (errorMessage) {
+          errorMessage.style.display = 'none';
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+
+</html>

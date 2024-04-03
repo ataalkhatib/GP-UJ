@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>University of Jordan | DataTables User</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href=" ./plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href=" ./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href=" ./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href=" ./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href=" ./dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="dist/img/University_of_Jordan_Logo.svg.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <!-- Delete User Modal -->
+  <div class="modal fade" id="DeleteUser" tabindex="-1" aria-labelledby="DeleteUserLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close mt-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5 col-11 text-end" id="DeleteUserLabel">حذف مستخدم</h1>
+        </div>
+        <div class="modal-body" style="text-align: right;">
+          هل انت واثق من أنك تريد حذف هذا المستخدم ؟
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form method="POST">
+            <input type="hidden" id="userID" name="userID">
+            <button type="submit" name="delete-user-btn" class="btn btn-danger">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Delete Admin Modal -->
+  <div class="modal fade" id="DeleteAdmin" tabindex="-1" aria-labelledby="DeleteAdminLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close mt-0" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5 col-11 text-end" id="DeleteAdminLabel">حذف ادمن</h1>
+        </div>
+        <div class="modal-body" style="text-align: right;">
+          هل انت واثق من أنك تريد حذف الأدمن ؟
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <form method="POST">
+            <input type="hidden" id="adminID" name="adminID">
+            <button type="submit" name="delete-admin-btn" class="btn btn-danger">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="wrapper">
+
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+      </ul>
+  
+      <ul class="navbar-nav ml-auto">
+  
+          <li class="nav-item">
+              <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt"></i>
+              </a>
+          </li>
+  
+      </ul>
+  </nav>
+  
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <a href=" ./index3.html" class="brand-link">
+          <img src=" ./dist/img/University_of_Jordan_Logo.svg.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <span class="brand-text font-weight-light">University of Jordan</span>
+      </a>
+  
+      <div class="sidebar">
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="image">
+                  <img src=" ./dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              </div>
+              <div class="info">
+                  <a href="#" class="d-block">Dr.Atta</a>
+              </div>
+          </div>
+  
+          <div class="form-inline">
+              <div class="input-group" data-widget="sidebar-search">
+                  <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                  <div class="input-group-append">
+                      <button class="btn btn-sidebar">
+                          <i class="fas fa-search fa-fw"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+  
+          <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  
+                  <li class="nav-item">
+                      <a href="index.html" class="nav-link">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                              Forms
+                          </p>
+                      </a>
+  
+                  </li>
+                  <li class="nav-item">
+                      <a href="AllTable.php" class="nav-link">
+                          <i class="nav-icon fas fa-table"></i>
+                          <p>
+                              Tables
+                          </p>
+                      </a>
+  
+                  </li>
+                  <li class="nav-item">
+                      <a href="Table_User.php" class="nav-link">
+                          <i class="nav-icon fas fa-ellipsis-h"></i>
+                          <p>All Users</p>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+  </aside>
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Table Users & Admin</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Table Users & Admin</li>
+              </ol>
+            </div>
+          </div>
+      </section>
+
+
+
+      <section class="content">
+        <div class="container-fluid">
+
+          <div class="row">
+
+            <div class="col-3 user-from-show-btn" style="height: 50px;">
+              <button type="button" onclick="showAddUserForm()" class="btn btn-block bg-gradient-success btn-sm">Add User</button>
+            </div>
+            <div class="col-3 user-from-hide-btn" style="height: 50px; display:none">
+              <button type="button" onclick="hideAddUserForm()" class="btn btn-block bg-gradient-danger btn-sm">Close User Form</button>
+            </div>
+            <div class="col-6" style="height: 50px;">
+            </div>
+            <div class="col-3 admin-from-show-btn" style="height: 50px;">
+              <button type="button" onclick="showAddAdminForm()" class="btn btn-block bg-gradient-primary btn-sm">Add Admin</button>
+            </div>
+            <div class="col-3 admin-from-hide-btn" style="height: 50px; display:none">
+              <button type="button" onclick="hideAddAdminForm()" class="btn btn-block bg-gradient-danger btn-sm">Close Admin Form</button>
+            </div>
+
+            <div class="col-12 userForm" style="display: none;">
+              <div class="card card-outline card-primary">
+                <h3 class="card-header text-center">
+                  University of Jordan
+                </h3>
+                <div class="card-body">
+                  <p class="login-box-msg">Register a new User</p>
+                  <form method="POST" class="rtl">
+                    <div class="input-group mb-3">
+                      <input type="text" dir="rtl" class="form-control " placeholder="اسم الموظف">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;">
+                    <div class="input-group mb-3">
+                      <input type="text" dir="rtl" class="form-control " placeholder="اسم الكلية">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="text" dir="rtl" class="form-control" placeholder="اسم القسم">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="number" dir="rtl" class="form-control "  placeholder="الرقم الوظيفي">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="password" dir="rtl" class="form-control <?php echo (!empty($data['password_err'])) ? 'is-invalid' : ''; ?>" name="password" placeholder="رقم المرور">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="password" dir="rtl" class="form-control name="confirm_password" placeholder="تأكيد رقم المرور">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="row">
+                      <div class="col-3">
+                      </div>
+                      <div class="col-6">
+                        <button type="submit" name="add-new-user" class="btn btn-primary btn-block">Add New user</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 adminForm" style="display: none;">
+              <div class="card card-outline card-primary">
+                <h3 class="card-header text-center">
+                  University of Jordan
+                </h3>
+                <div class="card-body">
+                  <p class="login-box-msg">Register a new Admin Center</p>
+                  <form method="POST" class="rtl">
+                    <div class="input-group mb-3">
+                      <input type="text" dir="rtl" class="form-control " placeholder="اسم الموظف">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="number" dir="rtl" class="form-control "placeholder="الرقم الوظيفي">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-user"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="password" dir="rtl" class="form-control" name="password" placeholder="رقم المرور">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="input-group mb-3">
+                      <input type="password" dir="rtl" class="form-control  " name="confirm_password" placeholder="تأكيد رقم المرور">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <span class="fas fa-lock"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <p style="color: red; font-size: 14px;text-align: end;"></p>
+
+                    <div class="row">
+                      <div class="col-3">
+                      </div>
+                      <div class="col-6">
+                        <button type="submit" name="add-new-admin" class="btn btn-primary btn-block">Add New Admin</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Table User</h3>
+
+
+                  <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-head-fixed text-nowrap" style="text-align:center">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Employee ID</th>
+                          <th>User Name</th>
+                          <th>Faculty</th>
+                          <th>Department</th>
+                          <th>Forms Completed</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="card-header">
+                  <h3 class="card-title">Table Admin</h3>
+                  <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-head-fixed text-nowrap" style="text-align:center">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Employee ID</th>
+                          <th>User Name</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+    </div>
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        .
+      </div>
+      <strong>Copyright &copy; 2023-2024 University of Jordan </strong> All rights reserved.
+    </footer>
+
+    <aside class="control-sidebar control-sidebar-dark">
+    </aside>
+  </div>
+
+  <script src=" ./plugins/jquery/jquery.min.js"></script>
+  <script src=" ./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src=" ./plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src=" ./plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src=" ./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src=" ./plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src=" ./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src=" ./plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src=" ./plugins/jszip/jszip.min.js"></script>
+  <script src=" ./plugins/pdfmake/pdfmake.min.js"></script>
+  <script src=" ./plugins/pdfmake/vfs_fonts.js"></script>
+  <script src=" ./plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src=" ./plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src=" ./plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src=" ./dist/js/adminlte.min.js"></script>
+  <script src=" ./dist/js/demo.js"></script>
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <script>
+    function setValueToDeleteAdmin($value) {
+      document.getElementById('adminID').value = $value;
+    }
+
+    function setValueToDeleteUser($value) {
+      document.getElementById('userID').value = $value;
+    }
+  </script>
+  <script>
+    function showAddUserForm() {
+      document.querySelector('.user-from-show-btn').style.display = 'none';
+      document.querySelector('.user-from-hide-btn').style.display = 'block';
+      document.querySelector('.userForm').style.display = 'block';
+    }
+
+    function hideAddUserForm() {
+      document.querySelector('.user-from-show-btn').style.display = 'block';
+      document.querySelector('.user-from-hide-btn').style.display = 'none';
+      document.querySelector('.userForm').style.display = 'none';
+    }
+
+    function showAddAdminForm() {
+      document.querySelector('.admin-from-show-btn').style.display = 'none';
+      document.querySelector('.admin-from-hide-btn').style.display = 'block';
+      document.querySelector('.adminForm').style.display = 'block';
+    }
+
+    function hideAddAdminForm() {
+      document.querySelector('.admin-from-show-btn').style.display = 'block';
+      document.querySelector('.admin-from-hide-btn').style.display = 'none';
+      document.querySelector('.adminForm').style.display = 'none';
+    }
+  </script>
+
+</body>
+
+</html>
